@@ -1,4 +1,4 @@
-from generate_transition_matrix_solutions import generate_transition_matrix_solutions
+from .generate_transition_matrix_solutions import generate_transition_matrix_solutions
 from .load_transitions_into_adata import load_transitions_into_adata
 from .random_transition_matrix import random_transition_matrix
 from .solve_steady_state import solve_steady_state

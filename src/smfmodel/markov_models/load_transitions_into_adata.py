@@ -20,8 +20,7 @@ def load_transitions_into_adata(transition_matrix_solutions, transition_names, c
     
     for matrix in transition_matrix_solutions:
         h = np.hstack(matrix) # Flatten the matrix
-        transitions = [transition for transition in h if transition > 0] # Only keep non-zero transtions
-        transitions_list.append(transitions) # Add to the transition list
+        transitions_list.append(h) # Add to the transition list
         
     transitions_matrix = np.array(transitions_list) # Turn the transtion list into an ndarray
     adata = ad.AnnData(transitions_matrix) # Build an AnnData around the ndarray

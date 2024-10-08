@@ -1,4 +1,5 @@
 # random_transition_matrix
+import numpy as np
 
 def random_transition_matrix(size=4, allow_self_transitions=False, constrain_transitions_to_adjacent=True):
     """
@@ -14,7 +15,6 @@ def random_transition_matrix(size=4, allow_self_transitions=False, constrain_tra
         matrix (np.ndarray): A square transition matrix
 
     """
-    import numpy as np
 
     # Create a random matrix of variable 'size' with values between 0 and 1
     matrix = np.random.rand(size, size)

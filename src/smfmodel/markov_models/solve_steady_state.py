@@ -1,4 +1,5 @@
 # solve_steady_state
+import numpy as np
 
 def solve_steady_state(T):
     """
@@ -10,7 +11,6 @@ def solve_steady_state(T):
     Returns:
         numpy.ndarray: Steady state proportions (1D array).
     """
-    import numpy as np
     
     # Number of states
     n = T.shape[0]

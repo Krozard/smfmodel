@@ -1,9 +1,9 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "smftools"
+name = "smfmodel"
 description = "Probabalistic Modeling of Single Molecule Footprinting data in Python."
 requires-python = ">=3.9"
 license = "MIT"
@@ -81,6 +81,9 @@ docs = [
     "sphinxcontrib-bibtex",
     "setuptools"
 ]
+
+[tool.hatch.envs.default]
+python = "3.9.12"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/smfmodel"]

@@ -6,6 +6,6 @@ from . import plotting as pl
 package_name = "smfmodel"
 
 __all__ = [
-    "base",
+    "mm",
     "pl"
 ]

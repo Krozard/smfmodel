@@ -83,7 +83,8 @@ docs = [
 ]
 
 [tool.hatch.envs.default]
-python = "3.9.12"
+python = "3.9"
+dependencies = ["pydantic"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/smfmodel"]

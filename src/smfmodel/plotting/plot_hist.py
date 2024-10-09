@@ -12,6 +12,7 @@ def plot_hist(data_arrays, params):
     import matplotlib.pyplot as plt
     import numpy as np
     import seaborn as sns
+    import pandas as pd
 
     n_bins = params['n_bins']
     window_size = params['window_size']

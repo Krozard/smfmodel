@@ -26,7 +26,7 @@ def random_transition_matrix(size=4, allow_self_transitions=False, constrain_tra
     if constrain_transitions_to_adjacent:
         for i in range(size):
             for j in range(size):
-                if np.abs(i-j) == 2:
+                if np.abs(i-j) == 2: # This only works by 4X4 matrices
                     matrix[i, j] = 0
                 
     row_sums = matrix.sum(axis=1, keepdims=True)  # Calculate row sums

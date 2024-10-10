@@ -10,21 +10,10 @@ def detailed_balance_deviation(transition_matrix):
         transition_matrix (np.ndarray): The transition matrix to check.
 
     Returns:
-        deviations (np.ndarray): A matrix of deviations for each pair of states.
-        sum_deviations (float): The sum of all deviations in the deviation matrix.
-        max_deviation (float): The maximum deviation.
-        mean_deviation (float): The mean deviation.
+        deviation (np.ndarray): Deviation from detailed balance
     """
     steady_state = solve_steady_state(transition_matrix)
-    n = len(steady_state)
-    deviations = np.zeros((n, n))
 
-    for i in range(n):
-        for j in range(n):
-            deviations[i, j] = steady_state[i] * transition_matrix[i, j] - steady_state[j] * transition_matrix[j, i]
-    
-    max_deviation = np.max(np.abs(deviations))
-    mean_deviation = np.mean(np.abs(deviations))
-    sum_deviations = np.sum(deviations)
+    deviation = steady_state[0] * transition_matrix[0, 1] - steady_state[1] * transition_matrix[1, 0]
 
-    return deviations, sum_deviations, max_deviation, mean_deviation
+    return deviation

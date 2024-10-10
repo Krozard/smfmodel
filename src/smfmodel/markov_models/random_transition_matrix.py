@@ -19,7 +19,9 @@ def random_transition_matrix(size=4, allow_self_transitions=False, constrain_tra
     # Create a random matrix of variable 'size' with values between 0 and 1
     matrix = np.random.rand(size, size)
     
-    if not allow_self_transitions:
+    if allow_self_transitions:
+        pass
+    else:
         # Set diagonal to zero (no self-transitions)
         np.fill_diagonal(matrix, 0)
     

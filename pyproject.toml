@@ -13,7 +13,7 @@ authors = [
     {name = "Ziyuan Chen"}
 ]
 maintainers = [
-    {name = "Joseph McKenna", email = "jkmckenna@berkeley.edu"}
+    {name = "Joseph McKenna", email = "jkmckenna@berkeley.edu"},
     {name = "Sathvik Anantakrishnan"},
     {name = "Ziyuan Chen"}
 ]

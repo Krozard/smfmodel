@@ -36,6 +36,7 @@ def permutation_test(condition_1, condition_2, apply_clr_transform=False, n_perm
     import numpy as np
     from scipy.spatial.distance import euclidean
     from sklearn.utils import resample
+    from tqdm import tqdm
 
     if apply_clr_transform:
         from .clr_transform import clr_transform
@@ -60,20 +61,23 @@ def permutation_test(condition_1, condition_2, apply_clr_transform=False, n_perm
     permuted_distances = []
     
     # Perform permutation test by shuffling data and calculating distances
-    for _ in range(n_permutations):
-        # Randomly shuffle the combined data
-        permuted_data = resample(combined_data)
-        
-        # Split the permuted data into two new conditions
-        new_cond_1 = permuted_data[:n_1]  # First 'n_1' samples
-        new_cond_2 = permuted_data[n_1:]  # Remaining samples
-        
-        # Calculate the centroids for the permuted data
-        permuted_centroid_1 = np.mean(new_cond_1, axis=0)
-        permuted_centroid_2 = np.mean(new_cond_2, axis=0)
-        
-        # Calculate the distance between the new centroids and store it
-        permuted_distances.append(euclidean(permuted_centroid_1, permuted_centroid_2))
+    with tqdm(total=n_permutations, desc=f"Permutation {n_permutations}") as pbar:
+        for _ in range(int(n_permutations)):
+            # Randomly shuffle the combined data
+            permuted_data = resample(combined_data)
+            
+            # Split the permuted data into two new conditions
+            new_cond_1 = permuted_data[:n_1]  # First 'n_1' samples
+            new_cond_2 = permuted_data[n_1:]  # Remaining samples
+            
+            # Calculate the centroids for the permuted data
+            permuted_centroid_1 = np.mean(new_cond_1, axis=0)
+            permuted_centroid_2 = np.mean(new_cond_2, axis=0)
+            
+            # Calculate the distance between the new centroids and store it
+            permuted_distances.append(euclidean(permuted_centroid_1, permuted_centroid_2))
+
+            pbar.update(1)  # Update progress bar for each permutation
 
     # Convert the list of permuted distances to a NumPy array for easier comparison
     permuted_distances = np.array(permuted_distances)

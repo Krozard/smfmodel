@@ -62,10 +62,15 @@ def plot_hist(data_arrays, params):
             plt.plot(bin_centers, rolling_average, color=palette[i], linewidth=2, label=labels[i])  
             
         if show_mean:
-            mean_value = np.mean(data)
+            pos_data = [d for d in data if d >= 0]
+            neg_data = [d for d in data if d <= 0]
+            mean_pos_value = np.mean(pos_data)
+            mean_neg_value = np.mean(neg_data)
             max_height = np.max(counts)
-            plt.axvline(mean_value, color=palette[i], linestyle='dashed', linewidth=1)
-            plt.text(mean_value + mean_value/4, max_height/2, f'Mean: {mean_value:.4f}', color=palette[i])
+            plt.axvline(mean_pos_value, color=palette[i], linestyle='dashed', linewidth=1)
+            plt.text(mean_pos_value + mean_pos_value/4, max_height/2, f'Mean: {mean_pos_value:.4f}', color=palette[i])
+            plt.axvline(mean_neg_value, color=palette[i], linestyle='dashed', linewidth=1)
+            plt.text(mean_neg_value + mean_neg_value/4, max_height/2, f'Mean: {mean_neg_value:.4f}', color=palette[i])
             
         if show_cdf:
             from scipy.stats import gaussian_kde

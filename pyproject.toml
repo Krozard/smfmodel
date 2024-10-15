@@ -8,10 +8,14 @@ description = "Probabalistic Modeling of Single Molecule Footprinting data in Py
 requires-python = ">=3.9"
 license = "MIT"
 authors = [
-    {name = "Joseph McKenna"}
+    {name = "Joseph McKenna"},
+    {name = "Sathvik Anantakrishnan"},
+    {name = "Ziyuan Chen"}
 ]
 maintainers = [
-    {name = "Joseph McKenna", email = "jkmckenna@berkeley.edu"}
+    {name = "Joseph McKenna", email = "jkmckenna@berkeley.edu"},
+    {name = "Sathvik Anantakrishnan"},
+    {name = "Ziyuan Chen"}
 ]
 keywords = [
   "single-molecule-footprinting",
@@ -50,6 +54,7 @@ dependencies = [
     "scikit-learn>=1.0.2",
     "scipy>=1.7.3",
     "seaborn>=0.11",
+    "statsmodels",
     "torch>=1.9.0",
     "tqdm"
 ]
@@ -81,10 +86,6 @@ docs = [
     "sphinxcontrib-bibtex",
     "setuptools"
 ]
-
-[tool.hatch.envs.default]
-python = "3.9"
-dependencies = ["pydantic"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/smfmodel"]

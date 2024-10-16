@@ -4,6 +4,7 @@ from .generate_transition_matrix_solutions import generate_transition_matrix_sol
 from .load_transitions_into_adata import load_transitions_into_adata
 from .random_transition_matrix import random_transition_matrix
 from .solve_steady_state import solve_steady_state
+from .energy_dissipation import energy_dissipation
 
 __all__ = [
     "check_detailed_balance",
@@ -11,5 +12,6 @@ __all__ = [
     "generate_transition_matrix_solutions",
     "load_transitions_into_adata",
     "random_transition_matrix",
-    "solve_steady_state"
+    "solve_steady_state",
+    "energy_dissipation"
 ]

@@ -18,17 +18,23 @@ def generate_transition_matrix_solutions(observed_proportions, variance_threshol
     from .random_transition_matrix import random_transition_matrix
     from .solve_steady_state import solve_steady_state
 
-    total_matrices = params['total_matrices']
-    size = params['size']
-    allow_self_transitions = params['allow_self_transitions']
-    constrain_transitions_to_adjacent = params['constrain_transitions_to_adjacent']
+    function_dict = {
+        "random_transition_matrix": random_transition_matrix
+    }
+
+    total_matrices = params.get('total_matrices', 1000)
+    size = params.get('size', 4)
+    allow_self_transitions = params.get('allow_self_transitions', False)
+    constrain_transitions_to_adjacent = params.get('constrain_transitions_to_adjacent', True)
+    generate_T_function_str = params.get('generate_T_function', 'random_transition_matrix')
+    generate_T_function = function_dict[generate_T_function_str]
 
     transition_matrix_solutions = []
     generated_matrices = 0
     
     with tqdm(total=total_matrices, desc=f"Generating {total_matrices} matrices for {condition}") as pbar:
         while generated_matrices < total_matrices:
-            T = random_transition_matrix(size=size, allow_self_transitions=allow_self_transitions, constrain_transitions_to_adjacent=constrain_transitions_to_adjacent)  # Generate a random transition matrix
+            T = generate_T_function(size=size, allow_self_transitions=allow_self_transitions, constrain_transitions_to_adjacent=constrain_transitions_to_adjacent)  # Generate a random transition matrix
             steady_state = solve_steady_state(T)  # Calculate steady-state proportions
             abs_delta = np.abs(steady_state - observed_proportions) # Get the difference between the observed proportions and the T-steady state
             variance_test = variance_threshold - abs_delta # Substract the difference from the variance threshold
